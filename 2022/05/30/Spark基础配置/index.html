@@ -1,0 +1,311 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  Spark基础配置 |    white.</title>
+  <meta name="description" content="A minimalist theme for hexo.">
+  <!-- 标签页图标 -->
+  
+
+  <!-- 图标库 -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- 动画库 -->
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  
+  <!-- css文件 -->
+  
+<link rel="stylesheet" href="/css/white.css">
+
+  <!-- 代码高亮 -->
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+
+<div class="menu-outer">
+    <div class="menu-inner">
+      <div class="menu-site-name  animate__animated  animate__fadeInUp">
+        <a href="/">
+          white.
+        </a>
+        
+      </div>
+      <div class="menu-group">
+        <ul class="menu-ul">
+        
+          <a href="/" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              HOME
+            </li>
+          </a>
+        
+          <a href="/archives" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              BLOG
+            </li>
+          </a>
+        
+        
+        
+          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
+            <i class="ri-menu-line"></i>
+          </li>
+        
+        </ul>
+
+      </div>
+
+    </div>
+</div>
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
+      <a href="/">
+        white.
+      </a>
+    </div>
+    <div class="mobile-menu-group" id="mobile-close">
+      <i class="ri-close-line"></i>
+    </div>
+
+  </div>
+
+  <div class="mobile-menu-div">
+  
+    <a href="/" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>HOME</span>
+      </div>
+    </a>
+  
+    <a href="/archives" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>BLOG</span>
+      </div>
+    </a>
+  
+  
+  </div>
+
+
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    
+<article class="post-inner">
+  <div class="post-content-outer">
+    <div class="post-intro">
+      <div class="post-title animate__animated  animate__fadeInUp">Spark基础配置</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">May 30 2022</div>
+      
+    </div>
+    <div class="post-content-inner">
+      <div class="post-content-inner-space">
+
+      </div>
+      <div class="post-content-main animate__animated  animate__fadeInUp">
+        <!-- top型目录 -->
+        
+        <h2 id="1-虚拟机分配"><a href="#1-虚拟机分配" class="headerlink" title="1.虚拟机分配"></a>1.虚拟机分配</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node1：192.168.88.151</span><br><span class="line">node2：192.168.88.152</span><br><span class="line">node3：192.168.88.153</span><br></pre></td></tr></table></figure>
+
+<p>开启虚拟机，连接FinalShell输入以下命令查看主机主机名、host映射、防火墙状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/hostname</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-安装JDK"><a href="#2-安装JDK" class="headerlink" title="2.安装JDK"></a>2.安装JDK</h2><p>（1）上传JDK压缩包到export&#x2F;server&#x2F;路径下</p>
+<p>（2）解压安装包 tar zxvf jdk-8u65-linux-x64.tar.gz</p>
+<p>建立软连接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /export/server/jdk-8u65-linux-x64/ /export/server/jdk</span><br></pre></td></tr></table></figure>
+
+<p>（3）配置环境变量 vim &#x2F;etc&#x2F;export 添加以下内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/export/server/jdk1.8.0_24</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib</span><br></pre></td></tr></table></figure>
+
+<p>（4）source &#x2F;etc&#x2F;profile 使环境变量生效</p>
+<p>（5）向node2、node3分发JDK</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp -r /export/server/jdk1.8.0_241/ root@node2:/export/server/</span><br><span class="line">scp -r /export/server/jdk1.8.0_241/ root@node3:/export/server/</span><br></pre></td></tr></table></figure>
+
+<p>（6）向node2、node3复制环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp /etc/profile root@node2:/etc/</span><br><span class="line">scp /etc/profile root@node3:/etc/</span><br></pre></td></tr></table></figure>
+
+<p>（7）source &#x2F;etc&#x2F;profile 使环境变量生效</p>
+<p>（8）分别在三台虚拟机执行以下命令检验安装是否成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java  -version </span><br></pre></td></tr></table></figure>
+
+<p>Java(TM) SE Runtime Environment (build 1.8.0_241-b07)</p>
+<p>Java HotSpot(TM) 64-Bit Server VM (build 25.241-b07, mixed mode)</p>
+<h2 id="3-安装配置Hadoop集群"><a href="#3-安装配置Hadoop集群" class="headerlink" title="3.安装配置Hadoop集群"></a>3.安装配置Hadoop集群</h2><p>(1) 集群角色规划</p>
+<p>node1:namenode datanode resourcemanager nodemanager</p>
+<p>node2: secondarynamenode datanode nodemanager</p>
+<p>node3: datanode nodemanager</p>
+<p>(2) 服务器基础环境准备</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/hostname</span><br></pre></td></tr></table></figure>
+
+<p>Host映射</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.88.151 node1</span><br><span class="line">192.168.88.152 node2</span><br><span class="line">192.168.88.153 node3</span><br></pre></td></tr></table></figure>
+
+<p>(3) 关闭防火墙（3台机器）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service #关闭防火墙</span><br><span class="line">systemctl disable firewalld.service #禁止防火墙自动开启</span><br></pre></td></tr></table></figure>
+
+<p>配置SSH免密登陆</p>
+<p>node1生成公钥私钥 (一路回车)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<p>配置免密登录到node1 node2 node3</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id node1</span><br><span class="line">ssh-copy-id node2</span><br><span class="line">ssh-copy-id node3</span><br></pre></td></tr></table></figure>
+
+<p>(4) 上传hadoop压缩包到export&#x2F;server&#x2F;路径下</p>
+<p>解压</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf hadoop-3.3.0-Centos7-64-with-snappy.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>建立软链接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /export/server/ hadoop-3.3.0-Centos7-64 /export/server/hadoop</span><br></pre></td></tr></table></figure>
+
+<p>(5) 修改配置文件hadoop-env.sh（配置文件路径 hadoop-3.3.0&#x2F;etc&#x2F;hadoop）</p>
+<p>添加以下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/export/server/jdk1.8.0_241</span><br><span class="line">export HDFS_NAMENODE_USER=root</span><br><span class="line">export HDFS_DATANODE_USER=root</span><br><span class="line">export HDFS_SECONDARYNAMENODE_USER=root</span><br><span class="line">export YARN_RESOURCEMANAGER_USER=root</span><br><span class="line">export YARN_NODEMANAGER_USER=root </span><br></pre></td></tr></table></figure>
+
+<p>(6) 修改配置文件core-site.xml</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!-- 设置默认使用的文件系统 Hadoop支持file、HDFS、GFS、ali|Amazon云等文件系统 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;hdfs://node1:8020&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 设置Hadoop本地保存数据路径 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;/export/data/hadoop-3.3.0&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">     &lt;!-- 设置HDFS web UI用户身份 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hadoop.http.staticuser.user&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;root&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">     &lt;!-- 整合hive 用户代理设置 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hadoop.proxyuser.root.hosts&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;*&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hadoop.proxyuser.root.groups&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;*&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 文件系统垃圾桶保存时间 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;fs.trash.interval&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;1440&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<p>(7) 修改配置文件hdfs-site.xml</p>
+<p>添加以下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!-- 设置SNN进程运行机器位置信息 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;node2:9868&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<p>(8) 修改配置文件 mapred-site.xml</p>
+<p>添加以下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 设置MR程序默认运行模式： yarn集群模式 local本地模式 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">      &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</span><br><span class="line">      &lt;value&gt;yarn&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">     &lt;!-- MR程序历史服务地址 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">    &lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</span><br><span class="line">      &lt;value&gt;node1:10020&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">     </span><br><span class="line">    &lt;!-- MR程序历史服务器web端地址 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">      &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</span><br><span class="line">      &lt;value&gt;node1:19888&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;property&gt;</span><br><span class="line">      &lt;name&gt;yarn.app.mapreduce.am.env&lt;/name&gt;</span><br><span class="line">      &lt;value&gt;HADOOP_MAPRED_HOME=$&#123;HADOOP_HOME&#125;&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;property&gt;</span><br><span class="line">      &lt;name&gt;mapreduce.map.env&lt;/name&gt;</span><br><span class="line">      &lt;value&gt;HADOOP_MAPRED_HOME=$&#123;HADOOP_HOME&#125;&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;property&gt;</span><br><span class="line">      &lt;name&gt;mapreduce.reduce.env&lt;/name&gt;</span><br><span class="line">      &lt;value&gt;HADOOP_MAPRED_HOME=$&#123;HADOOP_HOME&#125;&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<p>(9) 修改配置文件yarn-site.xml</p>
+<p>添加以下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 设置YARN集群主角色运行机器位置 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">    	&lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</span><br><span class="line">    	&lt;value&gt;node1&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;!-- 是否将对容器实施物理内存限制 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.pmem-check-enabled&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;false&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 是否将对容器实施虚拟内存限制。 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.vmem-check-enabled&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;false&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 开启日志聚集 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">      &lt;name&gt;yarn.log-aggregation-enable&lt;/name&gt;</span><br><span class="line">      &lt;value&gt;true&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 设置yarn历史服务器地址 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.log.server.url&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;http://node1:19888/jobhistory/logs&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 历史日志保存的时间 7天 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">      &lt;name&gt;yarn.log-aggregation.retain-seconds&lt;/name&gt;</span><br><span class="line">      &lt;value&gt;604800&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<p>(10) 修改配置文件workers</p>
+<p>添加以下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node1.itcast.cn</span><br><span class="line">node2.itcast.cn</span><br><span class="line">node3.itcast.cn</span><br></pre></td></tr></table></figure>
+
+<p>(11) 分发同步hadoop安装包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp -r hadoop-3.3.0 root@node2:$PWD</span><br><span class="line">scp -r hadoop-3.3.0 root@node3:$PWD</span><br></pre></td></tr></table></figure>
+
+<p>(12) 将hadoop添加到环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br><span class="line">export HADOOP_HOME=/export/server/hadoop-3.3.0</span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin</span><br></pre></td></tr></table></figure>
+
+<p>(13) 向node2、node3复制环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp /etc/profile root@node2:/etc/</span><br><span class="line">scp /etc/profile root@node3:/etc/</span><br><span class="line">source /etc/profile #使环境变量生效</span><br></pre></td></tr></table></figure>
+
+<p>(14) Hadoop集群启动</p>
+<p>（&#x3D;&#x3D;首次启动&#x3D;&#x3D;）格式化namenode</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs namenode -format</span><br></pre></td></tr></table></figure>
+
+<p>脚本一键启动：start-dfs.sh 、start-yarn.sh </p>
+<p>(15) 访问WEB UI页面验证是否配置成功</p>
+<p>HDFS集群：<a target="_blank" rel="noopener" href="http://node1:9870/">http://node1:9870/</a></p>
+<p>YARN集群：<a target="_blank" rel="noopener" href="http://node1:8088/">http://node1:8088/</a></p>
+<h2 id="4-zookeeper集群配置"><a href="#4-zookeeper集群配置" class="headerlink" title="4.zookeeper集群配置"></a>4.zookeeper集群配置</h2><p>(1) 基本规划</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node1：192.168.88.151  1</span><br><span class="line">node2：192.168.88.152  2</span><br><span class="line">node3：192.168.88.153  3</span><br></pre></td></tr></table></figure>
+
+<p>(2) 上传zookeeper压缩包export&#x2F;server&#x2F;路径下</p>
+<p>解压</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf zookeeper-3.4.6.tar.gz </span><br></pre></td></tr></table></figure>
+
+<p>建立软连接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /export/server/zookeeper-3.4.6 /export/server/zookeeper</span><br></pre></td></tr></table></figure>
+
+<p>(3) 修改配置文件zoo_sample.cfg </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp zoo_sample.cfg zoo.cfg</span><br><span class="line">mkdir -p /export/server/zookeeper/zkdatas/</span><br><span class="line">vim  zoo.cfg</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">修改以下内容：</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Zookeeper的数据存放目录</span></span><br><span class="line">dataDir=/export/server/zookeeper/zkdatas</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保留多少个快照</span></span><br><span class="line">autopurge.snapRetainCount=3</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">日志多少小时清理一次</span></span><br><span class="line">autopurge.purgeInterval=1</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">集群中服务器地址</span></span><br><span class="line">server.1=node1:2888:3888</span><br><span class="line">server.2=node2:2888:3888</span><br><span class="line">server.3=node3:2888:3888</span><br></pre></td></tr></table></figure>
+
+<p>(4)添加myid配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; /export/server/zookeeper/zkdatas/myid</span><br></pre></td></tr></table></figure>
+
+<p>(5) 分发安装包并修改myid值</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /export/server/</span><br><span class="line">scp -r /export/server/zookeeper-3.4.6/ node2:$PWD</span><br><span class="line">scp -r /export/server/zookeeper-3.4.6/ node3:$PWD</span><br></pre></td></tr></table></figure>
+
+<p>第二台机器上建立软连接, 并修改myid的值为2</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /export/server/</span><br><span class="line">ln -s zookeeper-3.4.6/ zookeeper </span><br><span class="line">echo 2 &gt; /export/server/zookeeper/zkdatas/myid</span><br></pre></td></tr></table></figure>
+
+<p>第三台机器上建立软连接, 并修改myid的值为3</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /export/server/</span><br><span class="line">ln -s zookeeper-3.4.6/ zookeeper </span><br><span class="line">echo 3 &gt; /export/server/zookeeper/zkdatas/myid</span><br></pre></td></tr></table></figure>
+
+<p>(6) 配置环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile </span><br><span class="line">export ZOOKEEPER_HOME=/export/server/zookeeper</span><br><span class="line">export PATH=$PATH:$ZOOKEEPER_HOME/bin</span><br></pre></td></tr></table></figure>
+
+<p>(7) 向node2、node3复制环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp /etc/profile root@node2:/etc/</span><br><span class="line">scp /etc/profile root@node3:/etc/</span><br><span class="line">source /etc/profile #使环境变量生效</span><br></pre></td></tr></table></figure>
+
+<p>(8) 三台机器启动zookeeper服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/export/server/zookeeper/bin/zkServer.sh start</span><br><span class="line">/export/server/zookeeper/bin/zkServer.sh stop</span><br></pre></td></tr></table></figure>
+
+<p>(9) 查看服务状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/export/server/zookeeper/bin/zkServer.sh  </span><br><span class="line">status</span><br></pre></td></tr></table></figure>
+
+
+        <!-- 分类文章 -->
+        
+      </div>
+      <div class="post-content-inner-space">
+        
+          <div class="space-toc-main animate__animated  animate__fadeInUp">
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#1-%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%86%E9%85%8D"><span class="space-toc-text">1.虚拟机分配</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#2-%E5%AE%89%E8%A3%85JDK"><span class="space-toc-text">2.安装JDK</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEHadoop%E9%9B%86%E7%BE%A4"><span class="space-toc-text">3.安装配置Hadoop集群</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#4-zookeeper%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE"><span class="space-toc-text">4.zookeeper集群配置</span></a></li></ol>
+           </div>
+        
+      </div>
+   </div>
+    <!-- 评论 -->
+    
+  </div>
+</article>
+  </div>
+</div>
+
+
+
+<!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
+
+  <div class="footer-outer animate__animated  animate__fadeInUp">
+    <div class="footer-inner">
+    <div class="footer-text">
+    <p>Power by <a target="_blank" rel="noopener" href="http://hexo.io/">Hexo</a> Theme by <a target="_blank" rel="noopener" href="https://github.com/FuShaoLei/hexo-theme-white">White</a></p>
+
+    </div>
+    <div class="footer-contact">
+    <ul class="footer-ul">
+        
+        <li class="footer-li">
+            <a href="https://github.com/FuShaoLei/hexo-theme-white" target="_blank">
+                <i class="ri-github-line"></i>
+            </a>
+        </li>
+        
+        <li class="footer-li">
+            <a href="mailto:1563250958@qq.com" target="_blank">
+                <i class="ri-mail-line"></i>
+            </a>
+        </li>
+        
+    </ul>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="/js/white.js"></script>
+
+
+
+</body>
+</html>

@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  Blog |    white.</title>
+  <title>  Spark on Yarn |    white.</title>
   <meta name="description" content="A minimalist theme for hexo.">
   <!-- 标签页图标 -->
   
@@ -99,80 +99,99 @@
 <div class="body-outer">
   <div class="body-inner">
     
+<article class="post-inner">
+  <div class="post-content-outer">
+    <div class="post-intro">
+      <div class="post-title animate__animated  animate__fadeInUp">Spark on yarn</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">May 30 2022</div>
+      
+    </div>
+    <div class="post-content-inner">
+      <div class="post-content-inner-space">
 
-    <section class="archive-outer">
-    <section class="archive-inner">
+      </div>
+      <div class="post-content-main animate__animated  animate__fadeInUp">
+        <!-- top型目录 -->
         
+        <h1 id="spark在yarn上运行"><a href="#spark在yarn上运行" class="headerlink" title="spark在yarn上运行"></a>spark在yarn上运行</h1><p>(1) 角色规划</p>
+<p>Master角色由YARN的ResourceManager担任.</p>
+<p>Worker角色由YARN的NodeManager担任.</p>
+<p>Driver角色运行在YARN容器内或提交任务的客户端进程中</p>
+<p>真正干活的Executor运行在YARN提供的容器内</p>
+<p>(2) 启动yarn的历史服务器，jps看进程，查看web UI</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/export/server/hadoop/sbin/mr-jobhistory-daemon.sh start historyserver</span><br></pre></td></tr></table></figure>
+
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="D:\hexo\blog\source\images\图片9.png" >
+        </sapn>
+      </p>
+<p>(3) 在yarn上启动pyspark</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/export/server/spark/bin/pyspark --master yarn</span><br></pre></td></tr></table></figure>
+
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="D:\hexo\blog\source\images\图片10.png" >
+        </sapn>
+      </p>
+<p>(4) 测试命令</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="D:\hexo\blog\source\images\图片11.png" >
+        </sapn>
+      </p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="D:\hexo\blog\source\images\图片12.png" >
+        </sapn>
+      </p>
+<p>(5) client模式测试pi</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="D:\hexo\blog\source\images\图片13.png" >
+        </sapn>
+      </p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="D:\hexo\blog\source\images\图片14.png" >
+        </sapn>
+      </p>
+<p>(6) cluster模式测试pi</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="D:\hexo\blog\source\images\图片15.png" >
+        </sapn>
+      </p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="D:\hexo\blog\source\images\图片16.png" >
+        </sapn>
+      </p>
+<p>到这了Spark就配置完成了！！！！</p>
+
+        <!-- 分类文章 -->
         
+      </div>
+      <div class="post-content-inner-space">
         
-        
+          <div class="space-toc-main animate__animated  animate__fadeInUp">
             
-            
-        <div class="archive-name animate__animated  animate__fadeInUp">2022</div>
+           </div>
         
-          <a  href="/2022/05/30/spark-HA/">
-          <div class="archive-post animate__animated  animate__fadeInUp">
-            <div class="archive-post-title">Spark HA</div>
-            <div class="archive-post-date">05-30</div>
-            <!-- May 30 -->
-          </div>
-          </a>
-        
-        
-        
-          <a  href="/2022/05/30/Spark%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/">
-          <div class="archive-post animate__animated  animate__fadeInUp">
-            <div class="archive-post-title">Spark基础配置</div>
-            <div class="archive-post-date">05-30</div>
-            <!-- May 30 -->
-          </div>
-          </a>
-        
-        
-        
-          <a  href="/2022/05/30/spark-Standalone%E9%85%8D%E7%BD%AE/">
-          <div class="archive-post animate__animated  animate__fadeInUp">
-            <div class="archive-post-title">Spark-standalone</div>
-            <div class="archive-post-date">05-30</div>
-            <!-- May 30 -->
-          </div>
-          </a>
-        
-        
-        
-          <a  href="/2022/05/30/spark-on-yarn/">
-          <div class="archive-post animate__animated  animate__fadeInUp">
-            <div class="archive-post-title">Spark on yarn</div>
-            <div class="archive-post-date">05-30</div>
-            <!-- May 30 -->
-          </div>
-          </a>
-        
-        
-        
-          <a  href="/2022/05/30/SparkLocal/">
-          <div class="archive-post animate__animated  animate__fadeInUp">
-            <div class="archive-post-title">Spark-local</div>
-            <div class="archive-post-date">05-30</div>
-            <!-- May 30 -->
-          </div>
-          </a>
-        
-        
-        
-          <a  href="/2022/05/28/hello-world/">
-          <div class="archive-post animate__animated  animate__fadeInUp">
-            <div class="archive-post-title">Hello World</div>
-            <div class="archive-post-date">05-28</div>
-            <!-- May 28 -->
-          </div>
-          </a>
-        
-        
-    </section>
-</section>
-
-
+      </div>
+   </div>
+    <!-- 评论 -->
+    
+  </div>
+</article>
   </div>
 </div>
 
