@@ -1,0 +1,289 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  《Kafka命令行操作》 |    white.</title>
+  <meta name="description" content="A minimalist theme for hexo.">
+  <!-- 标签页图标 -->
+  
+
+  <!-- 图标库 -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- 动画库 -->
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  
+  <!-- css文件 -->
+  
+<link rel="stylesheet" href="/css/white.css">
+
+  <!-- 代码高亮 -->
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+
+<div class="menu-outer">
+    <div class="menu-inner">
+      <div class="menu-site-name  animate__animated  animate__fadeInUp">
+        <a href="/">
+          white.
+        </a>
+        
+      </div>
+      <div class="menu-group">
+        <ul class="menu-ul">
+        
+          <a href="/" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              HOME
+            </li>
+          </a>
+        
+          <a href="/archives" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              BLOG
+            </li>
+          </a>
+        
+        
+        
+          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
+            <i class="ri-menu-line"></i>
+          </li>
+        
+        </ul>
+
+      </div>
+
+    </div>
+</div>
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
+      <a href="/">
+        white.
+      </a>
+    </div>
+    <div class="mobile-menu-group" id="mobile-close">
+      <i class="ri-close-line"></i>
+    </div>
+
+  </div>
+
+  <div class="mobile-menu-div">
+  
+    <a href="/" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>HOME</span>
+      </div>
+    </a>
+  
+    <a href="/archives" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>BLOG</span>
+      </div>
+    </a>
+  
+  
+  </div>
+
+
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    
+<article class="post-inner">
+  <div class="post-content-outer">
+    <div class="post-intro">
+      <div class="post-title animate__animated  animate__fadeInUp">《Kafka命令行操作》</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">Jun 05 2022</div>
+      
+    </div>
+    <div class="post-content-inner">
+      <div class="post-content-inner-space">
+
+      </div>
+      <div class="post-content-main animate__animated  animate__fadeInUp">
+        <!-- top型目录 -->
+        
+        <h1 id="《Kafka命令行操作》"><a href="#《Kafka命令行操作》" class="headerlink" title="《Kafka命令行操作》"></a>《Kafka命令行操作》</h1><hr>
+<p>title: 《Kafka命令行操作》<br>date: 2022-6-5 20:20:41<br>description: Spark (HA) Spark (Yarn)</p>
+<details>
+<summary>阅读全文</summary>
+
+<p>**<summary></p>
+<p>1、cd &#x2F;export&#x2F;server&#x2F;kafka&#x2F;bin目录下的命令行工具</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<pre><code>kafka-configs.sh	用于配置管理
+kafka-console-consumer.sh	用于消费消息
+kafka-console-producer.sh	用于生产消息
+kafka-consumer-perf-test.sh	用于测试消费性能
+kafka-topics.sh	用于管理主题
+kafka-dump-log.sh	用于查看日志内容
+kafka-server-stop.sh	用于关闭kafka服务
+kafka-preferred-replica-election.sh	用于优先副本的选举
+kafka-server-start.sh	用于启动kafka服务
+kafka-producer-perf-test.sh	用于测试生产性能
+kafka-reassign-partitions.sh	用于分区重分配
+</code></pre>
+</blockquote>
+</blockquote>
+<p>2、查看当前可用topic（应该什么也没有）</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/1.png" >
+        </sapn>
+      </p>
+<p>3、创建topic，检查是否创建成功<br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/2.png" >
+        </sapn>
+      </p>
+<p>4、手动指定副本的存储位置，进入cd &#x2F;export&#x2F;data&#x2F;kafka-logs路径下查看分区的分布<br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/3.png" >
+        </sapn>
+      <br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/4.png" >
+        </sapn>
+      <br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/5.png" >
+        </sapn>
+      <br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/6.png" >
+        </sapn>
+      </p>
+<p>5、进入到zookeeper client，查看目录、controller、controller_epoch<br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/7.png" >
+        </sapn>
+      </p>
+<p>6、删除topic，检查是否删除成功<br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/8.png" >
+        </sapn>
+      <br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/9.png" >
+        </sapn>
+      <br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/10.png" >
+        </sapn>
+      <br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/11.png" >
+        </sapn>
+      </p>
+<p>7、查看topic详情<br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/12.png" >
+        </sapn>
+      </p>
+<p>8、增加分区数，查看topic详情<br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/13.png" >
+        </sapn>
+      </p>
+<p>9、修改参数<br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/14.png" >
+        </sapn>
+      </p>
+<p>10、生产者写入数据、消费者拉取数据<br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/15.png" >
+        </sapn>
+      <br>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/../images/16.png" >
+        </sapn>
+      <br>**</p>
+</details>
+
+<hr>
+
+        <!-- 分类文章 -->
+        
+      </div>
+      <div class="post-content-inner-space">
+        
+      </div>
+   </div>
+    <!-- 评论 -->
+    
+  </div>
+</article>
+  </div>
+</div>
+
+
+
+<!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
+
+  <div class="footer-outer animate__animated  animate__fadeInUp">
+    <div class="footer-inner">
+    <div class="footer-text">
+    <p>Power by <a target="_blank" rel="noopener" href="http://hexo.io/">Hexo</a> Theme by <a target="_blank" rel="noopener" href="https://github.com/FuShaoLei/hexo-theme-white">White</a></p>
+
+    </div>
+    <div class="footer-contact">
+    <ul class="footer-ul">
+        
+        <li class="footer-li">
+            <a href="https://github.com/FuShaoLei/hexo-theme-white" target="_blank">
+                <i class="ri-github-line"></i>
+            </a>
+        </li>
+        
+        <li class="footer-li">
+            <a href="mailto:1563250958@qq.com" target="_blank">
+                <i class="ri-mail-line"></i>
+            </a>
+        </li>
+        
+    </ul>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="/js/white.js"></script>
+
+
+
+</body>
+</html>
